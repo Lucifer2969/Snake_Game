@@ -21,7 +21,6 @@ my_screen.onkey(snake.down, "Down")
 my_screen.onkey(snake.right, "Right")
 my_screen.onkey(snake.left, "Left")
 
-
 while game_is_on:
     my_screen.update()
     time.sleep(0.1)
@@ -33,12 +32,12 @@ while game_is_on:
         score.update_count()
 
     if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
-        game_is_on = False
-        score.game_over()
+        score.update_high_score()
+        snake.snake_position()
 
     for block in snake.block_list[1:]:
         if snake.head.distance(block) < 10:
-            game_is_on = False
-            score.game_over()
+            score.update_high_score()
+            snake.snake_position()
 
 my_screen.exitonclick()
